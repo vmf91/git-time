@@ -61,11 +61,7 @@ exec(`ls ${dir}/.git`, function (err, data) {
       }else{
         var diff = c - lastCommit;
 
-        if(diff < 0){
-          console.log('diff = ' + diff)
-        }
-
-        if(diff < max){
+        if(diff < max && diff > 0){
           total += diff
         }else{
           total += min
@@ -75,12 +71,6 @@ exec(`ls ${dir}/.git`, function (err, data) {
       lastCommit = c
       barValue++;
       bar1.update(barValue);
-      /*
-      if(i%10 == 0){
-        barValue += 10;
-        bar1.update(barValue);
-      }
-      */
     }
 
     bar1.stop();
