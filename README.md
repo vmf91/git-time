@@ -2,7 +2,7 @@
 Estimate time spent on a git repository.
 
 ## Install
-    $ npm install -g git-time
+    npm install -g git-time
 
 ## Usage
     git-time <path>
