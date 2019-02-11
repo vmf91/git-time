@@ -3,7 +3,11 @@ var argv = require('minimist')(process.argv.slice(2));
 
 // If help or bad usage
 if (typeof argv.help == 'boolean' || typeof argv.h == 'boolean' || typeof argv._[0] == 'undefined') {
-  console.log('\nUsage: git-time <path>\n\nWhere <path> is the path of your Git repository.')
+  console.log('\nUsage: git-time <path>\n\nWhere <path> is the path of your Git repository.\n')
+  console.log('Options:\n')
+  console.log('  -h, --help\toutput usage information')
+  console.log('  --max\t\tmaximum time in minutes between two consecultive commits. Default: 90')
+  console.log('  --min\t\tminimum time in minutes for the start commit. Default: 25')
   return;
 }
 
@@ -15,15 +19,17 @@ if (dir == '.') {
   dir = process.cwd()
 }
 
-var min = 1500
+var min = 25
 if (typeof argv.min === 'number') {
   min = argv.min
 }
+min = 25 * 60
 
-var max = 5400
+var max = 90
 if (typeof argv.max === 'number') {
   max = argv.max
 }
+max = 25 * 60
 
 exec(`ls ${dir}/.git`, function (err, data) {
   if (err) {
