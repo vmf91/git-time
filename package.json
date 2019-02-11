@@ -1,0 +1,25 @@
+{
+  "name": "git-time",
+  "version": "1.0.0",
+  "description": "Measure time spent on a git repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "git",
+    "hours",
+    "time",
+    "spent"
+  ],
+  "bin": {
+    "git-time": "./bin/git-time.js"
+  },
+  "preferGlobal": true,
+  "author": "Victor Miranda Fernandes",
+  "license": "ISC",
+  "dependencies": {
+    "cli-progress": "^2.1.1",
+    "minimist": "^1.2.0"
+  }
+}
