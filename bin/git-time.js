@@ -23,13 +23,13 @@ var min = 25
 if (typeof argv.min === 'number') {
   min = argv.min
 }
-min = 25 * 60
+min *= 60
 
 var max = 90
 if (typeof argv.max === 'number') {
   max = argv.max
 }
-max = 25 * 60
+max *= 60
 
 exec(`ls ${dir}/.git`, function (err, data) {
   if (err) {
