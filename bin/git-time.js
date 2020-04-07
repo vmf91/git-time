@@ -31,13 +31,23 @@ if (typeof argv.max === 'number') {
 }
 max *= 60
 
+// all non common arguments will be passed to the `git log` command
+var gitArgs = process.argv
+  .slice(3) // get the args after path
+  .filter(argumentString => // remove common args
+    ['--max', '--min', '--help'].reduce(
+      (notThere, prefix) => notThere && argumentString.indexOf(prefix) !== 0,
+      true
+    )
+  ).join(" ");
+
 exec(`ls ${dir}/.git`, function (err, data) {
   if (err) {
     console.log(`${dir} is not a valid Git directory`)
     return
   }
 
-  exec(`cd ${dir} && git log --pretty='format:%ct'`, function (err, data) {
+  exec(`cd ${dir} && git log ${gitArgs} --pretty='format:%ct'`, function (err, data) {
     if (err) {
       console.log(err)
       return
