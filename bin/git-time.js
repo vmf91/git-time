@@ -8,6 +8,9 @@ if (typeof argv.help == 'boolean' || typeof argv.h == 'boolean' || typeof argv._
   console.log('  -h, --help\toutput usage information')
   console.log('  --max\t\tmaximum time in minutes between two consecultive commits. Default: 90')
   console.log('  --min\t\tminimum time in minutes for the start commit. Default: 25')
+  console.log('any other param will be appended to the git log command.')
+  console.log('  git-time --author=jane.doe@example.com will work')
+  
   return;
 }
 
