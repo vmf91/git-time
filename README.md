@@ -17,9 +17,7 @@ Estimate time spent on a git repository.
       -h, --help	output usage information
       --max	    	maximum time diff in minutes between two consecultive commits. Default: 90
       --min	    	minimum time in minutes for the start commit. Default: 25
-    
-    any other param will be appended to the git log command.
-      git-time --author=jane.doe@example.com will work
+      --author      filter out authors. Value(s) are passed to the git log command.
       
       
 ## Output
