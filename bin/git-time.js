@@ -8,8 +8,7 @@ if (typeof argv.help == 'boolean' || typeof argv.h == 'boolean' || typeof argv._
   console.log('  -h, --help\toutput usage information')
   console.log('  --max\t\tmaximum time in minutes between two consecultive commits. Default: 90')
   console.log('  --min\t\tminimum time in minutes for the start commit. Default: 25')
-  console.log('any other param will be appended to the git log command.')
-  console.log('  git-time --author=jane.doe@example.com will work')
+  console.log('  --author\t\tfilter out authors. Value(s) are passed to the git log command.')
   
   return;
 }
@@ -34,15 +33,14 @@ if (typeof argv.max === 'number') {
 }
 max *= 60
 
-// all non common arguments will be passed to the `git log` command
-var gitArgs = process.argv
-  .slice(3) // get the args after path
-  .filter(argumentString => // remove common args
-    ['--max', '--min', '--help'].reduce(
-      (notThere, prefix) => notThere && argumentString.indexOf(prefix) !== 0,
-      true
-    )
-  ).join(" ");
+var authors = [];
+if (argv.author) {
+  if(typeof argv.author.map === 'function') {
+    authors = argv.author;
+  } else {
+    authors = [argv.author];
+  }
+}
 
 exec(`ls ${dir}/.git`, function (err, data) {
   if (err) {
@@ -50,7 +48,7 @@ exec(`ls ${dir}/.git`, function (err, data) {
     return
   }
 
-  exec(`cd ${dir} && git log ${gitArgs} --pretty='format:%an <%ae> %ct'`, function (err, data) {
+  exec(`cd ${dir} && git log ${authors.map(author => `--author="${author}"`).join(" ")} --pretty='format:%an <%ae> %ct'`, function (err, data) {
     if (err) {
       console.log(err)
       return
