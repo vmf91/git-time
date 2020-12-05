@@ -43,6 +43,8 @@ if (argv.author) {
   }
 }
 
+// Wrap in quotes to escape spaces
+dir = '"' + dir + '"'
 
 var lsCommand = `ls ${dir}/.git`;
 
