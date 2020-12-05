@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var argv = require('minimist')(process.argv.slice(2));
+var os = require('os');
 
 // If help or bad usage
 if (typeof argv.help == 'boolean' || typeof argv.h == 'boolean' || typeof argv._[0] == 'undefined') {
@@ -42,13 +43,20 @@ if (argv.author) {
   }
 }
 
-exec(`ls ${dir}/.git`, function (err, data) {
+
+var lsCommand = `ls ${dir}/.git`;
+
+if(os.platform() === 'win32'){
+	lsCommand = `dir ${dir}\\.git`;
+}
+
+exec(lsCommand, function (err, data) {
   if (err) {
     console.log(`${dir} is not a valid Git directory`)
     return
   }
 
-  exec(`cd ${dir} && git log ${authors.map(author => `--author="${author}"`).join(" ")} --pretty='format:%an <%ae> %ct'`, function (err, data) {
+  exec(`cd ${dir} && git log ${authors.map(author => `--author="${author}"`).join(" ")} --pretty="%an <%ae> %ct"`, function (err, data) {
     if (err) {
       console.log(err)
       return
