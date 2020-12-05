@@ -4,8 +4,8 @@
   "description": "Measure time spent on a git repository",
   "homepage": "https://github.com/vmf91/git-time#readme",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/vmf91/git-time"
+    "type": "git",
+    "url": "https://github.com/vmf91/git-time"
   },
   "main": "index.js",
   "scripts": {
