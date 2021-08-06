@@ -16,8 +16,8 @@ if (typeof argv.help == 'boolean' || typeof argv.h == 'boolean') {
 const { exec } = require('child_process');
 const _cliProgress = require('cli-progress');
 
-var dir = argv._[0] || '.';
-if (dir == '.') {
+var dir = argv._[0];
+if (!dir || dir == '.') {
   dir = process.cwd()
 }
 
