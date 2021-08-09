@@ -2,7 +2,7 @@
 var argv = require('minimist')(process.argv.slice(2));
 
 // If help or bad usage
-if (typeof argv.help == 'boolean' || typeof argv.h == 'boolean' || typeof argv._[0] == 'undefined') {
+if (typeof argv.help == 'boolean' || typeof argv.h == 'boolean') {
   console.log('\nUsage: git-time <path>\n\nWhere <path> is the path of your Git repository.\n')
   console.log('Options:\n')
   console.log('  -h, --help\toutput usage information')
@@ -17,7 +17,7 @@ const { exec } = require('child_process');
 const _cliProgress = require('cli-progress');
 
 var dir = argv._[0];
-if (dir == '.') {
+if (!dir || dir == '.') {
   dir = process.cwd()
 }
 
