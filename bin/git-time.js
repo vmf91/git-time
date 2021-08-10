@@ -2,14 +2,24 @@
 var argv = require('minimist')(process.argv.slice(2));
 var os = require('os');
 
+var version = '1.0.7'
+
 // If help or bad usage
 if (typeof argv.help == 'boolean' || typeof argv.h == 'boolean') {
   console.log('\nUsage: git-time <path>\n\nWhere <path> is the path of your Git repository.\n')
   console.log('Options:\n')
   console.log('  -h, --help\toutput usage information')
+  console.log('  -v, --version\tget the current version')
   console.log('  --max\t\tmaximum time in minutes between two consecultive commits. Default: 90')
   console.log('  --min\t\tminimum time in minutes for the start commit. Default: 25')
-  console.log('  --author\t\tfilter out authors. Value(s) are passed to the git log command.')
+  console.log('  --author\tfilter out authors. Value(s) are passed to the git log command.')
+  
+  return;
+}
+
+// If version
+if (typeof argv.version == 'boolean' || typeof argv.v == 'boolean') {
+  console.log(version)
   
   return;
 }
