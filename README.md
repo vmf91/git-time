@@ -13,8 +13,8 @@ Estimate time spent on a git repository.
     Where <path> is the path of your Git repository.
     
     Options:
-    
       -h, --help	output usage information
+      -v, --version	output usage information
       --max	    	maximum time diff in minutes between two consecultive commits. Default: 90
       --min	    	minimum time in minutes for the start commit. Default: 25
       --author      filter out authors. Value(s) are passed to the git log command.
